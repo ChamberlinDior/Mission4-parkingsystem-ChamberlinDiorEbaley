@@ -110,6 +110,7 @@ public class ParkingService {
 
 	public void processExitingVehicle(Date entryTime) {
 		try {
+			//Demande du numéro d'immatriculation du véhicule
 			String vehicleRegNumber = getVehichleRegNumber();
 			Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
 			double discount = Fare.NO_DISCOUNT;
