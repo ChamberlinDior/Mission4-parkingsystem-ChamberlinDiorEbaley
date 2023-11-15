@@ -116,6 +116,8 @@ public class FareCalculatorServiceTest {
 		assertThat(ticket.getPrice()).isEqualTo((0.75 - 0.5) * Fare.BIKE_RATE_PER_HOUR);
 	}
 
+	//Objectif : Ce test vérifie si le calcul du tarif pour une voiture avec moins d'une heure de stationnement est correct.
+	//Scénario : Similaire au test précédent, mais pour une place de parking.
 	@Test
 	public void calculateFareCarWithLessThanOneHourParkingTime() {
 		Date inTime = new Date();
@@ -133,6 +135,9 @@ public class FareCalculatorServiceTest {
 
 	}
 
+	//Objectif : Ce test vérifie si le calcul du tarif pour une voiture avec plus d'une journée de stationnement est correct.
+	//Scénario : il crée un Ticketobjet avec un inTime défini sur 24 heures auparavant, un outTime défini sur l'heure actuelle et une place de parking pour une voiture.
+	//Il calcule le tarif et affirme que le prix calculé correspond à la valeur attendue.
 	@Test
 	public void calculateFareCarWithMoreThanADayParkingTime() {
 		Date inTime = new Date();
