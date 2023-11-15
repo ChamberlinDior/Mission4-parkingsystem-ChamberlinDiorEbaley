@@ -43,6 +43,11 @@ public class FareCalculatorService {
 		}
 		default:
 			throw new IllegalArgumentException("Unkown Parking Type");
+
+			//Cette instruction de commutation vérifie le type de stationnement donné Ticketet calcule
+			// le prix en conséquence. S'il s'agit d'un CAR, il multiplie la durée par CAR_RATE_PER_HOUR et
+			// définit le résultat comme prix du billet. Si c'est un BIKE, il fait la même chose avec le BIKE_RATE_PER_HOUR.
+			// Si le type de stationnement est inconnu, il renvoie un IllegalArgumentExceptionmessage d'erreur
 		}
 	}
 }
