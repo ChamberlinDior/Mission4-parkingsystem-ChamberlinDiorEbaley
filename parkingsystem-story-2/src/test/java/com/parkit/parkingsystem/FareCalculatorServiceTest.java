@@ -82,7 +82,8 @@ public class FareCalculatorServiceTest {
 
 	//Objectif : Ce test vérifie si le système gère correctement un vélo avec un futur inTime.
 	//Scénario : il crée un Ticketobjet avec un inTime défini sur une heure dans le futur, un outTime défini sur
-	// l'heure actuelle et une place de stationnement pour un vélo. Il affirme que l'appel fareCalculatorService.calculateFareà ce ticket génère un IllegalArgumentException.
+	// l'heure actuelle et une place de stationnement pour un vélo. Il affirme que l'appel fareCalculatorService.
+	// calculateFareà ce ticket génère un IllegalArgumentException.
 	@Test
 	public void calculateFareBikeWithFutureInTime() {
 		Date inTime = new Date();
@@ -98,7 +99,8 @@ public class FareCalculatorServiceTest {
 	}
 
 	//Objectif : Ce test vérifie si le calcul du tarif pour un vélo avec un temps de stationnement inférieur à une heure est correct.
-	//Scénario : il crée un Ticketobjet avec un inTime défini sur 45 minutes auparavant, un outTime défini sur l'heure actuelle et une place de stationnement pour un vélo.
+	//Scénario : il crée un Ticketobjet avec un inTime défini sur 45 minutes auparavant,
+	// un outTime défini sur l'heure actuelle et une place de stationnement pour un vélo.
 	// Il calcule ensuite le tarif et affirme que le prix calculé correspond à la valeur attendue.
 	@Test
 	public void calculateFareBikeWithLessThanOneHourParkingTime() {
@@ -162,8 +164,6 @@ public class FareCalculatorServiceTest {
 	public void calculateFareCarWithLessThanHalfAnHourParkingTime() {
 		Date inTime = new Date();
 		inTime.setTime(System.currentTimeMillis() - (15 * 60 * 1000));
-		// 15 minutes parking time should give 0 * parking fare per hour (30 minutes
-		// free)
 		Date outTime = new Date();
 		ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
 

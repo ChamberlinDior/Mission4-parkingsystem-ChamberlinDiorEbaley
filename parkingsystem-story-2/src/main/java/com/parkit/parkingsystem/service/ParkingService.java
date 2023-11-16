@@ -112,10 +112,11 @@ public class ParkingService {
 		try {
 			//Demande du numéro d'immatriculation du véhicule
 			String vehicleRegNumber = getVehichleRegNumber();
+			// Récupération du ticket associé au numéro d'immatriculation du véhicule
 			Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
 			double discount = Fare.NO_DISCOUNT;
 			Date outTime = entryTime;
-
+			// Définir l'heure de sortie pour le ticket
 			ticket.setOutTime(outTime);
 
 			// price -5% for recurring vehicle
