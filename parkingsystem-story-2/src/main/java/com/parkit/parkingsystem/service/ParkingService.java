@@ -119,23 +119,27 @@ public class ParkingService {
 			// Définir l'heure de sortie pour le ticket
 			ticket.setOutTime(outTime);
 
-			// price -5% for recurring vehicle
+			// Appliquer une remise de 5% pour les véhicules récurrents
 			if (ticketDAO.isRecurringUser(vehicleRegNumber)) {
 				discount = Fare.FIVE_PERCENT_DISCOUNT;
 			}
+			// Calculer le tarif pour le ticket
 			fareCalculatorService.calculateFare(ticket, discount);
-
+			// Mettre à jour les informations du ticket dans la base de données
 			if (ticketDAO.updateTicket(ticket)) {
 				ParkingSpot parkingSpot = ticket.getParkingSpot();
+				// Définir la place de parking comme disponible
 				parkingSpot.setAvailable(true);
 				parkingSpotDAO.updateParking(parkingSpot);
+				// Afficher le tarif de stationnement à payer et l'heure de sortie enregistrée
 				System.out.println("Please pay the parking fare:" + ticket.getPrice());
-				System.out.println(
-						"Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is:" + outTime);
+				// Afficher un message d'erreur en cas d'incapacité à mettre à jour les informations du ticket
+				System.out.println("Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is:" + outTime);
 			} else {
 				System.out.println("Unable to update ticket information. Error occurred");
 			}
 		} catch (Exception e) {
+			// Journaliser un message d'erreur si une exception se produit pendant le processus
 			logger.error("Unable to process exiting vehicle", e);
 		}
 	}
