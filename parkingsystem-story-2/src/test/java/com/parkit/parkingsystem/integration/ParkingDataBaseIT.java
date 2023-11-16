@@ -128,6 +128,7 @@ public class ParkingDataBaseIT {
 		// check that the fare for a CAR during 1 hour is correctly calculated
 		assertThat(firstTicketTest.getPrice()).isEqualTo(0.75);
 
+		// Créer un nouvel objet ParkingService pour la deuxième visite.
 		ParkingService parkingSecondService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
 		parkingSecondService.processIncomingVehicle(secondInTime);
 		parkingSecondService.processExitingVehicle(secondOutTime);
