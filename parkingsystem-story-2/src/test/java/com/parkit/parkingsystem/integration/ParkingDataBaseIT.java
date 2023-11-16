@@ -58,7 +58,7 @@ public class ParkingDataBaseIT {
 	public void testParkingACar() {
 		ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
 
-		// to verify that ticket not already exist
+		// vérifier que le ticket n'existe pas deja
 		Ticket ticketBeforeTest = ticketDAO.getTicket("ABCDEF");
 		assertThat(ticketBeforeTest).isNull();
 
