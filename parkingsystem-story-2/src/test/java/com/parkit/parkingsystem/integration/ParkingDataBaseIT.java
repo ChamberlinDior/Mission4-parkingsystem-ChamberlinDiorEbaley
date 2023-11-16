@@ -54,6 +54,8 @@ public class ParkingDataBaseIT {
 
 	}
 
+	// Objectif : Ce test vérifie le processus de stationnement d'une voiture,
+	// en garantissant qu'un ticket est créé et que la place de stationnement est marquée comme indisponible.
 	@Test
 	public void testParkingACar() {
 		ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
@@ -70,6 +72,8 @@ public class ParkingDataBaseIT {
 		assertThat(ticketTest.getParkingSpot().isAvailable()).isFalse();
 	}
 
+	//Objectif : Ce test vérifie le processus de sortie d'un véhicule du parking,
+	// en s'assurant que le temps de sortie et le prix initial sont correctement définis.
 	@Test
 	public void testParkingLotExit() {
 
@@ -97,6 +101,8 @@ public class ParkingDataBaseIT {
 		assertThat(ticketTest.getPrice()).isEqualTo(0.75);
 	}
 
+	// Objectif : Ce test simule le stationnement et la sortie du véhicule d'un utilisateur récurrent,
+	// en vérifiant qu'une réduction est appliquée pour les visites ultérieures.
 	@Test
 	public void testDiscountForRecurringUsers() {
 
@@ -113,7 +119,7 @@ public class ParkingDataBaseIT {
 		secondInTime.setTime(2 * 60 * 60 * 1000);
 		secondOutTime.setTime(3 * 60 * 60 * 1000);
 
-		//
+		//Créez un nouvel ParkingServiceobjet pour la deuxième visite.
 		ParkingService parkingFirstService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
 		parkingFirstService.processIncomingVehicle(firstInTime);
 		parkingFirstService.processExitingVehicle(firstOutTime);
@@ -126,6 +132,9 @@ public class ParkingDataBaseIT {
 		parkingSecondService.processIncomingVehicle(secondInTime);
 		parkingSecondService.processExitingVehicle(secondOutTime);
 
+
+		// Récupérer le deuxième ticket de la base de données après la deuxième visite,
+		// et vérifier que le tarif généré est correct pour 1 heure avec une réduction de 5%.
 		Ticket secondTicketTest = ticketDAO.getTicket("ABCDEF");
 
 		// TODO: check that the fare generated is for 1 hour reduced by 5%
